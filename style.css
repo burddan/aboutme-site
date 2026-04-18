@@ -1,0 +1,209 @@
+@font-face {
+  font-family: 'ElronMono';
+  src: url('fonts/Elronmonospace.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'HackNerd';
+  src: url('fonts/HackNerdFont-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #1a1b26;
+  font-family: 'ElronMono', monospace;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === DWM BAR === */
+.dwm-bar {
+  width: 100%;
+  height: 22px;
+  background: #0f0a18;
+  display: flex;
+  align-items: stretch;
+  flex-shrink: 0;
+  font-size: 13px;
+}
+
+.bar-tags {
+  display: flex;
+  align-items: stretch;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  color: #a89bc2;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'HackNerd', monospace;
+  font-weight: bold;
+  background: #0f0a18;
+  transition: background 0.1s;
+}
+
+.tag:hover {
+  background: #1e1232;
+  color: #d4c4f0;
+}
+
+.tag.active {
+  background: #2d1f4e;
+  color: #d4c4f0;
+}
+
+.bar-title {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  background: #6b3fa0;
+  color: #f0eaff;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+}
+
+.bar-status {
+  display: flex;
+  align-items: center;
+  background: #0f0a18;
+  padding: 0 6px;
+  gap: 0;
+}
+
+.status-item {
+  color: #c4b5d4;
+  font-size: 12px;
+  padding: 0 8px;
+  border-left: 1px solid #2a1f3d;
+}
+
+.status-item:first-child {
+  border-left: none;
+}
+
+.desktop {
+  width: 100%;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* === FLOATING WINDOW === */
+.window {
+  position: absolute;
+  top: 80px;
+  left: 100px;
+  width: 560px;
+  min-height: 300px;
+  background: #1e1e2e;
+  border: 1px solid #414868;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+.window-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  height: 32px;
+  background: #24283b;
+  border-bottom: 1px solid #414868;
+  cursor: grab;
+}
+
+.window-titlebar:active {
+  cursor: grabbing;
+}
+
+.window-title {
+  font-size: 12px;
+  color: #a9b1d6;
+  letter-spacing: 0.05em;
+}
+
+
+.window-body {
+  padding: 16px;
+  flex: 1;
+}
+
+/* === TERMINAL === */
+.terminal {
+  color: #a9b1d6;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.terminal-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.prompt {
+  color: #7aa2f7;
+  white-space: nowrap;
+}
+
+#typed-output {
+  color: #c0caf5;
+}
+
+.typed-cursor {
+  color: #7aa2f7;
+}
+
+/* === NEOFETCH OUTPUT === */
+.neofetch-output {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.neofetch-output pre {
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #a9b1d6;
+  white-space: pre;
+}
+
+.nf-art {
+  color: #7aa2f7;
+}
+
+.nf-label {
+  color: #7aa2f7;
+  font-weight: bold;
+}
+
+.nf-sep {
+  color: #a9b1d6;
+}
+
+.nf-key {
+  color: #7aa2f7;
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+  color: #7aa2f7;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
