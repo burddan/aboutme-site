@@ -16,7 +16,7 @@
 }
 
 body {
-  background: #1a1b26;
+  background: var(--bg);
   font-family: 'ElronMono', monospace;
   height: 100vh;
   overflow: hidden;
@@ -27,12 +27,12 @@ body {
 /* === DWM BAR === */
 .dwm-bar {
   width: 100%;
-  height: 22px;
-  background: #0f0a18;
+  height: 25px; /* ← altura da barra */
+  background: var(--bar-bg);
   display: flex;
   align-items: stretch;
   flex-shrink: 0;
-  font-size: 13px;
+  font-size: 20px; /* ← fonte da barra */
 }
 
 .bar-tags {
@@ -44,23 +44,21 @@ body {
   display: flex;
   align-items: center;
   padding: 0 8px;
-  color: #a89bc2;
+  color: var(--tag-color);
   cursor: pointer;
-  font-size: 14px;
-  font-family: 'HackNerd', monospace;
-  font-weight: bold;
-  background: #0f0a18;
+  font-size: 15px;
+  background: var(--bar-bg);
   transition: background 0.1s;
 }
 
 .tag:hover {
-  background: #1e1232;
-  color: #d4c4f0;
+  background: var(--tag-hover-bg);
+  color: var(--tag-hover-color);
 }
 
 .tag.active {
-  background: #2d1f4e;
-  color: #d4c4f0;
+  background: var(--tag-active-bg);
+  color: var(--tag-active-color);
 }
 
 .bar-title {
@@ -68,36 +66,56 @@ body {
   display: flex;
   align-items: center;
   padding: 0 10px;
-  background: #6b3fa0;
-  color: #f0eaff;
-  font-size: 12px;
+  background: var(--bar-title-bg);
+  color: var(--bar-title-text);
+  font-size: 20px;
   letter-spacing: 0.03em;
 }
 
 .bar-status {
   display: flex;
   align-items: center;
-  background: #0f0a18;
+  background: var(--bar-bg);
   padding: 0 6px;
-  gap: 0;
 }
 
 .status-item {
-  color: #c4b5d4;
-  font-size: 12px;
+  color: var(--status-text);
+  font-size: 18px;
   padding: 0 8px;
-  border-left: 1px solid #2a1f3d;
+  border-left: 1px solid var(--separator);
 }
 
 .status-item:first-child {
   border-left: none;
 }
 
+/* === DESKTOP === */
 .desktop {
   width: 100%;
   flex: 1;
   position: relative;
   overflow: hidden;
+  background: var(--bg);
+}
+
+/* === CRT OVERLAY === */
+.desktop::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.04),
+      rgba(0, 255, 0, 0.02),
+      rgba(0, 0, 255, 0.04)
+    );
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+  z-index: 9999;
 }
 
 /* === FLOATING WINDOW === */
@@ -107,9 +125,9 @@ body {
   left: 100px;
   width: 560px;
   min-height: 300px;
-  background: #1e1e2e;
-  border: 1px solid #414868;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  background: var(--win-bg);
+  border: 1px solid var(--win-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
   display: flex;
   flex-direction: column;
   user-select: none;
@@ -121,8 +139,8 @@ body {
   justify-content: space-between;
   padding: 0 10px;
   height: 32px;
-  background: #24283b;
-  border-bottom: 1px solid #414868;
+  background: var(--win-titlebar-bg);
+  border-bottom: 1px solid var(--win-border);
   cursor: grab;
 }
 
@@ -132,10 +150,9 @@ body {
 
 .window-title {
   font-size: 12px;
-  color: #a9b1d6;
+  color: var(--win-title-text);
   letter-spacing: 0.05em;
 }
-
 
 .window-body {
   padding: 16px;
@@ -144,7 +161,7 @@ body {
 
 /* === TERMINAL === */
 .terminal {
-  color: #a9b1d6;
+  color: var(--terminal-text);
   font-size: 13px;
   line-height: 1.6;
 }
@@ -152,20 +169,19 @@ body {
 .terminal-line {
   display: flex;
   flex-wrap: wrap;
-  gap: 0;
 }
 
 .prompt {
-  color: #7aa2f7;
+  color: var(--prompt-color);
   white-space: nowrap;
 }
 
 #typed-output {
-  color: #c0caf5;
+  color: var(--typed-color);
 }
 
 .typed-cursor {
-  color: #7aa2f7;
+  color: var(--cursor-color);
 }
 
 /* === NEOFETCH OUTPUT === */
@@ -178,30 +194,18 @@ body {
   font-family: inherit;
   font-size: 13px;
   line-height: 1.7;
-  color: #a9b1d6;
+  color: var(--terminal-text);
   white-space: pre;
 }
 
-.nf-art {
-  color: #7aa2f7;
-}
-
-.nf-label {
-  color: #7aa2f7;
-  font-weight: bold;
-}
-
-.nf-sep {
-  color: #a9b1d6;
-}
-
-.nf-key {
-  color: #7aa2f7;
-}
+.nf-art   { color: var(--nf-art-color); }
+.nf-label { color: var(--nf-label-color); font-weight: bold; }
+.nf-sep   { color: var(--nf-sep-color); }
+.nf-key   { color: var(--nf-key-color); }
 
 .blink {
   animation: blink 1s step-end infinite;
-  color: #7aa2f7;
+  color: var(--cursor-color);
 }
 
 @keyframes blink {

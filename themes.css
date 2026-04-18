@@ -1,0 +1,46 @@
+/* =============================================
+   TEMA ATIVO — edite apenas este bloco
+   para mudar todo o visual do site (estilo pywal)
+   ============================================= */
+:root {
+  /* paleta base — gruvbox */
+  --color0: #282828;   /* fundo principal */
+  --color1: #3c3836;   /* superfície (janelas, barra) */
+  --color2: #504945;   /* superfície destacada */
+  --color3: #d79921;   /* acento (titlebar da barra) */
+  --color4: #ebdbb2;   /* foreground / texto principal */
+  --color5: #fabd2f;   /* brilhante (prompt) */
+  --color6: #d5c4a1;   /* texto secundário */
+  --color7: #504945;   /* separadores / bordas */
+
+  /* mapeamento semântico — não precisa mexer aqui */
+  --bg:                var(--color0);
+  --bar-bg:            var(--color1);
+  --bar-title-bg:      var(--color3);
+  --bar-text:          var(--color6);
+  --bar-title-text:    var(--color4);
+
+  --tag-color:         var(--color6);
+  --tag-hover-bg:      var(--color2);
+  --tag-hover-color:   var(--color4);
+  --tag-active-bg:     var(--color2);
+  --tag-active-color:  var(--color5);
+
+  --status-text:       var(--color6);
+  --separator:         var(--color7);
+
+  --win-bg:            var(--color1);
+  --win-border:        var(--color2);
+  --win-titlebar-bg:   var(--color7);
+  --win-title-text:    var(--color6);
+
+  --terminal-text:     var(--color6);
+  --prompt-color:      var(--color5);
+  --typed-color:       var(--color4);
+  --cursor-color:      var(--color5);
+
+  --nf-art-color:      var(--color5);
+  --nf-label-color:    var(--color5);
+  --nf-key-color:      var(--color4);
+  --nf-sep-color:      var(--color6);
+}
