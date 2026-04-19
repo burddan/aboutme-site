@@ -29,7 +29,8 @@
   --status-text:       var(--color6);
   --separator:         var(--color7);
 
-  --win-bg:            var(--color1);
+  /* --wallpaper:      url('wallpaper_exemplo.jpg'); */
+  --win-bg:            rgba(60, 56, 54, 0.45); /* ← transparência da janela, 0.0 = invisível, 1.0 = sólido */
   --win-border:        var(--color2);
   --win-titlebar-bg:   var(--color7);
   --win-title-text:    var(--color6);

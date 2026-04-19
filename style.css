@@ -1,13 +1,17 @@
-@font-face {
-  font-family: 'ElronMono';
-  src: url('fonts/Elronmonospace.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'HackNerd';
-  src: url('fonts/HackNerdFont-Bold.ttf') format('truetype');
-  font-weight: bold;
-}
+@font-face { font-family: 'ElronMono';  src: url('fonts/Elronmonospace.ttf') format('truetype'); }
+@font-face { font-family: 'Misa';       src: url('fonts/13_Misa.TTF') format('truetype'); }
+@font-face { font-family: 'HackNerd';   src: url('fonts/HackNerdFont-Bold.ttf') format('truetype'); font-weight: bold; }
+@font-face { font-family: 'ANK';        src: url('fonts/web437-dos-v-re-ank24.woff') format('woff'); }
+@font-face { font-family: 'XGA';        src: url('fonts/web437-ibm-xga-ai-12x20.woff') format('woff'); }
+@font-face { font-family: 'TI';         src: url('fonts/web437-ti-pro.woff') format('woff'); }
+@font-face { font-family: 'NEC';        src: url('fonts/web437-nec-apc3-8x16-2x.woff') format('woff'); }
+@font-face { font-family: 'DotGothic';  src: url('fonts/dotgothic16-regular.ttf') format('truetype'); }
+@font-face { font-family: 'Gabriele';   src: url('fonts/gabriele-d.ttf') format('truetype'); }
+@font-face { font-family: 'Kraut';      src: url('fonts/kraut-typefuck11.ttf') format('truetype'); }
+@font-face { font-family: 'Kingthings'; src: url('fonts/kingthings.ttf') format('truetype'); }
+@font-face { font-family: 'Redaction20'; src: url('fonts/redaction20.otf') format('opentype'); }
+@font-face { font-family: 'Redaction35'; src: url('fonts/redaction35.otf') format('opentype'); }
+@font-face { font-family: 'Redaction50'; src: url('fonts/redaction50.otf') format('opentype'); }
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -17,7 +21,7 @@
 
 body {
   background: var(--bg);
-  font-family: 'ElronMono', monospace;
+  font-family: 'XGA', monospace;
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -25,7 +29,26 @@ body {
 }
 
 /* === DWM BAR === */
+.dwm-bar::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.04),
+      rgba(0, 255, 0, 0.02),
+      rgba(0, 0, 255, 0.04)
+    );
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
 .dwm-bar {
+  position: relative;
   width: 100%;
   height: 25px; /* ← altura da barra */
   background: var(--bar-bg);
@@ -43,12 +66,29 @@ body {
 .tag {
   display: flex;
   align-items: center;
-  padding: 0 8px;
+  gap: 8px;
+  padding: 0 10px;
   color: var(--tag-color);
   cursor: pointer;
-  font-size: 15px;
+  font-size: 12px;
+  white-space: nowrap;
   background: var(--bar-bg);
   transition: background 0.1s;
+}
+
+.misa {
+  font-family: 'Misa', serif;
+}
+
+.bar-title-jp {
+  font-family: 'DotGothic', monospace;
+  opacity: 0.75;
+  margin-left: 8px;
+}
+
+.tag-icon {
+  font-family: 'HackNerd', monospace;
+  font-size: 24px;
 }
 
 .tag:hover {
@@ -97,6 +137,9 @@ body {
   position: relative;
   overflow: hidden;
   background: var(--bg);
+  /* background-image: var(--wallpaper);
+  background-size: cover;
+  background-position: center; */
 }
 
 /* === CRT OVERLAY === */
@@ -118,19 +161,54 @@ body {
   z-index: 9999;
 }
 
+/* === WORKSPACES === */
+.workspace {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+.workspace.active {
+  display: block;
+}
+
 /* === FLOATING WINDOW === */
 .window {
   position: absolute;
-  top: 80px;
-  left: 100px;
-  width: 560px;
-  min-height: 300px;
+  top: 60px;
+  left: 80px;
+  width: 750px;
+  min-height: 450px;
   background: var(--win-bg);
   border: 1px solid var(--win-border);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
   display: flex;
   flex-direction: column;
   user-select: none;
+  cursor: grab;
+}
+
+.window:active {
+  cursor: grabbing;
+}
+
+@keyframes window-in {
+  from {
+    opacity: 0;
+    filter: blur(12px);
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+}
+
+.workspace.active .window {
+  animation: window-in 0.5s ease forwards;
 }
 
 .window-titlebar {
@@ -210,4 +288,37 @@ body {
 
 @keyframes blink {
   50% { opacity: 0; }
+}
+
+/* === MANUAL === */
+.manual {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  background: var(--win-bg);
+  border: 1px solid var(--win-border);
+  padding: 10px 14px;
+  font-size: 15px;
+  color: var(--terminal-text);
+  z-index: 999;
+  backdrop-filter: blur(4px);
+}
+
+.manual-title {
+  color: var(--bar-title-bg);
+  font-size: 15px;
+  margin-bottom: 6px;
+  letter-spacing: 0.1em;
+}
+
+.manual-item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--tag-color);
+}
+
+.manual-key {
+  color: var(--prompt-color);
+  white-space: nowrap;
 }
