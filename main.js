@@ -1,36 +1,81 @@
 // === BOOT SCREEN ===
 const BOOT_LINES = [
   { text: 'GRUB version 2.12', delay: 0 },
-  { text: 'Loading Linux 6.19.11-gentoo ...', delay: 120 },
+  { text: 'Loading Linux 6.19.11-gentoo1-1 ...', delay: 120 },
   { text: 'Loading initial ramdisk ...', delay: 200 },
+  { text: '', delay: 60 },
+  // — kernel dmesg: rápido —
+  { text: '[<span class="boot-dim">    0.633375</span>] Segment Routing with IPv6', delay: 20 },
+  { text: '[<span class="boot-dim">    0.633377</span>] RPL Segment Routing with IPv6', delay: 18 },
+  { text: '[<span class="boot-dim">    0.633384</span>] In-situ OAM (IOAM) with IPv6', delay: 18 },
+  { text: '[<span class="boot-dim">    0.633403</span>] NET: Registered PF_PACKET protocol family', delay: 18 },
+  { text: '[<span class="boot-dim">    0.633609</span>] ehci-pci 0000:00:1a.0: USB 2.0 started, EHCI 1.00', delay: 20 },
+  { text: '[<span class="boot-dim">    0.633697</span>] usb usb3: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.19', delay: 18 },
+  { text: '[<span class="boot-dim">    0.633703</span>] usb usb3: New USB device strings: Mfr=3, Product=2, SerialNumber=1', delay: 18 },
+  { text: '[<span class="boot-dim">    0.633707</span>] usb usb3: Product: EHCI Host Controller', delay: 18 },
+  { text: '[<span class="boot-dim">    0.633710</span>] usb usb3: Manufacturer: Linux 6.19.11-gentoo ehci_hcd', delay: 18 },
+  { text: '[<span class="boot-dim">    0.633713</span>] usb usb3: SerialNumber: 0000:00:1a.0', delay: 18 },
+  { text: '[<span class="boot-dim">    0.633940</span>] hub 3-0:1.0: USB hub found', delay: 18 },
+  { text: '[<span class="boot-dim">    0.633954</span>] hub 3-0:1.0: 2 ports detected', delay: 18 },
+  { text: '[<span class="boot-dim">    0.634338</span>] ehci-pci 0000:00:1d.0: EHCI Host Controller', delay: 18 },
+  { text: '[<span class="boot-dim">    0.634349</span>] ehci-pci 0000:00:1d.0: new USB bus registered, assigned bus number 4', delay: 18 },
+  { text: '[<span class="boot-dim">    0.634363</span>] ehci-pci 0000:00:1d.0: debug port 2', delay: 18 },
+  { text: '[<span class="boot-dim">    0.637598</span>] ENERGY_PERF_BIAS: Set to \'normal\', was \'performance\'', delay: 20 },
+  { text: '[<span class="boot-dim">    0.638272</span>] ehci-pci 0000:00:1d.0: irq 18, io mem 0xfc000000', delay: 18 },
+  { text: '[<span class="boot-dim">    0.638512</span>] microcode: Current revision: 0x00000061', delay: 18 },
+  { text: '[<span class="boot-dim">    0.638514</span>] microcode: Updated early from: 0x00000052', delay: 18 },
+  { text: '[<span class="boot-dim">    0.640378</span>] resctrl: L3 monitoring detected', delay: 18 },
+  { text: '[<span class="boot-dim">    0.640410</span>] IPI shorthand broadcast: enabled', delay: 18 },
+  { text: '[<span class="boot-dim">    0.642976</span>] sched_clock: Marking stable (641001604, 1592133)->(1169665030, -527071293)', delay: 18 },
+  { text: '[<span class="boot-dim">    0.643272</span>] registered taskstats version 1', delay: 18 },
+  { text: '[<span class="boot-dim">    0.643607</span>] ehci-pci 0000:00:1d.0: USB 2.0 started, EHCI 1.00', delay: 18 },
+  { text: '[<span class="boot-dim">    0.643672</span>] usb usb4: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.19', delay: 18 },
+  { text: '[<span class="boot-dim">    0.643676</span>] usb usb4: New USB device strings: Mfr=3, Product=2, SerialNumber=1', delay: 18 },
+  { text: '[<span class="boot-dim">    0.643677</span>] usb usb4: Product: EHCI Host Controller', delay: 18 },
+  { text: '[<span class="boot-dim">    0.643679</span>] usb usb4: Manufacturer: Linux 6.19.11-gentoo ehci_hcd', delay: 18 },
+  { text: '[<span class="boot-dim">    0.643681</span>] usb usb4: SerialNumber: 0000:00:1d.0', delay: 18 },
+  { text: '[<span class="boot-dim">    0.643838</span>] hub 4-0:1.0: USB hub found', delay: 18 },
+  { text: '[<span class="boot-dim">    0.643852</span>] hub 4-0:1.0: 2 ports detected', delay: 18 },
+  { text: '[<span class="boot-dim">    0.644207</span>] Loading compiled-in X.509 certificates', delay: 60 },
+  { text: '', delay: 60 },
+  // — systemd: mais lento —
+  { text: '<span class="boot-start">[  OK  ]</span> Started udev Kernel Device Manager.', delay: 180 },
+  { text: '<span class="boot-start">[  OK  ]</span> Started Load Kernel Modules.', delay: 160 },
+  { text: '<span class="boot-start">[  OK  ]</span> Reached target System Initialization.', delay: 160 },
+  { text: '<span class="boot-start">[  OK  ]</span> Started D-Bus System Message Bus.', delay: 180 },
+  { text: '<span class="boot-warn">[ WARN ]</span> Starting Network Manager...', delay: 160 },
+  { text: '<span class="boot-start">[  OK  ]</span> Finished Network Manager.', delay: 300 },
+  { text: '<span class="boot-start">[  OK  ]</span> Started OpenRC service supervisor.', delay: 180 },
+  { text: '<span class="boot-start">[  OK  ]</span> Reached target Graphical Interface.', delay: 200 },
   { text: '', delay: 100 },
-  { text: '[<span class="boot-dim">    0.000000</span>] Linux version 6.19.11-gentoo (gcc 14.2.1) #1 SMP', delay: 80 },
-  { text: '[<span class="boot-dim">    0.000000</span>] Command line: BOOT_IMAGE=/vmlinuz-6.19.11 root=/dev/sda1 quiet', delay: 60 },
-  { text: '[<span class="boot-dim">    0.000000</span>] BIOS-provided physical RAM map:', delay: 60 },
-  { text: '[<span class="boot-dim">    0.000000</span>] ACPI: RSDP 0x00000000000F0490 000024 (v02 BOCHS)', delay: 60 },
-  { text: '[<span class="boot-dim">    0.214301</span>] PCI: Using configuration type 1 for base access', delay: 80 },
-  { text: '[<span class="boot-dim">    0.301882</span>] clocksource: tsc-early: mask: 0xffffffffffffffff', delay: 60 },
-  { text: '[<span class="boot-dim">    0.512104</span>] NET: Registered PF_INET6 protocol family', delay: 60 },
-  { text: '[<span class="boot-dim">    0.623419</span>] SCSI subsystem initialized', delay: 60 },
-  { text: '[<span class="boot-dim">    0.788203</span>] xhci_hcd: xHCI Host Controller', delay: 80 },
-  { text: '[<span class="boot-dim">    1.002841</span>] EXT4-fs (sda1): mounted filesystem', delay: 100 },
-  { text: '', delay: 80 },
-  { text: '<span class="boot-start">[  OK  ]</span> Started udev Kernel Device Manager.', delay: 120 },
-  { text: '<span class="boot-start">[  OK  ]</span> Started Load Kernel Modules.', delay: 100 },
-  { text: '<span class="boot-start">[  OK  ]</span> Reached target System Initialization.', delay: 100 },
-  { text: '<span class="boot-start">[  OK  ]</span> Started D-Bus System Message Bus.', delay: 120 },
-  { text: '<span class="boot-warn">[ WARN ]</span> Starting Network Manager...', delay: 100 },
-  { text: '<span class="boot-start">[  OK  ]</span> Finished Network Manager.', delay: 200 },
-  { text: '<span class="boot-start">[  OK  ]</span> Started OpenRC service supervisor.', delay: 100 },
-  { text: '<span class="boot-start">[  OK  ]</span> Reached target Graphical Interface.', delay: 120 },
-  { text: '', delay: 80 },
-  { text: 'Gentoo Linux (6.19.11-gentoo) (tty1)', delay: 200 },
+  { text: 'Gentoo Linux (6.19.11-gentoo1-1) (tty1)', delay: 250 },
   { text: '', delay: 100 },
-  { text: 'gentoo login: <span class="boot-ok">burddan</span>', delay: 300 },
-  { text: 'Password:', delay: 400 },
-  { text: '', delay: 300 },
+  { text: 'gentoo login: <span class="boot-ok">burddan</span>', delay: 350 },
+  { text: 'Password:', delay: 450 },
+  { text: '', delay: 350 },
   { text: 'Last login: ' + new Date().toDateString(), delay: 200 },
   { text: '', delay: 100 },
+  { text: 'burddan@thinkpad ~ $ startx', delay: 400, s: 0.2 },
+  { text: '', delay: 80, s: 0.2 },
+  { text: 'X.Org X Server 21.1.8', delay: 30, s: 0.2 },
+  { text: 'X Protocol Version 11, Revision 0', delay: 18, s: 0.2 },
+  { text: 'Current Operating System: Gentoo Linux', delay: 18, s: 0.2 },
+  { text: 'Kernel command line: BOOT_IMAGE=/vmlinuz root=/dev/nvme0n1p3 quiet', delay: 18, s: 0.2 },
+  { text: '', delay: 18, s: 0.2 },
+  { text: 'Build Date: 12 March 2025  02:14:32PM', delay: 18, s: 0.2 },
+  { text: '', delay: 18, s: 0.2 },
+  { text: 'Current version of pixman: 0.42.2', delay: 18, s: 0.2 },
+  { text: '    Before reporting problems, check https://wiki.x.org', delay: 18, s: 0.2 },
+  { text: '    to make sure that you have the latest version.', delay: 18, s: 0.2 },
+  { text: '', delay: 18, s: 0.2 },
+  { text: 'Markers: (--) probed, (**) from config file, (==) default setting,', delay: 18, s: 0.2 },
+  { text: '         (++) from command line, (!!) notice, (II) informational,', delay: 18, s: 0.2 },
+  { text: '         (WW) warning, (EE) error, (NI) not implemented, (??) unknown.', delay: 18, s: 0.2 },
+  { text: '', delay: 18, s: 0.2 },
+  { text: '(==) Log file: "/home/burddan/.local/share/xorg/Xorg.0.log", Time: ' + new Date().toLocaleString('en-US', {weekday:'short', month:'short', day:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit', year:'numeric', hour12:false}), delay: 18, s: 0.2 },
+  { text: '(==) Using config directory: "/etc/X11/xorg.conf.d"', delay: 18, s: 0.2 },
+  { text: '(==) Using system config directory "/usr/share/X11/xorg.conf.d"', delay: 18, s: 0.2 },
+  { text: '', delay: 80, s: 0.2 },
 ];
 
 function runBoot() {
@@ -41,12 +86,17 @@ function runBoot() {
   let i = 0;
   let total = 0;
 
+  const SPEED = 0.49; // 0.7 * 0.7 // ← multiplicador global do boot (menor = mais rápido)
+
   BOOT_LINES.forEach((line, idx) => {
-    total += line.delay + 40;
+    const jitter = Math.random() * 30 - 15;
+    const spd = line.s !== undefined ? line.s : SPEED;
+    total += Math.max(5, (line.delay + jitter) * spd);
     setTimeout(() => {
       const div = document.createElement('div');
       div.innerHTML = line.text;
       output.appendChild(div);
+      screen.scrollTop = screen.scrollHeight;
     }, total);
   });
 
@@ -89,7 +139,7 @@ const COMMANDS = {
 <div class="aboutme-line">I have experience working with <span class="nf-key">C/C++</span>, <span class="nf-key">APIs</span>, <span class="nf-key">Docker</span>, and <span class="nf-key">CI/CD</span> workflows.</div>
 <div class="aboutme-line"> </div>
 <div class="aboutme-line">I enjoy building practical projects that combine performance,</div>
-<div class="aboutme-line">automation, and clean architecture.</div>
+<div class="aboutme-line">automation, and clean gentooitecture.</div>
 <div class="aboutme-line">Currently focused on improving my skills in <span class="nf-key">DevOps</span> and scalable system design.</div>
 <div class="aboutme-line"> </div>
 <div class="aboutme-line">I'm always learning and looking for opportunities to grow as a developer.</div>
@@ -136,7 +186,7 @@ function executeCommand(terminal, cmd) {
 function appendInteractivePrompt(terminal) {
   const line = document.createElement('div');
   line.className = 'terminal-line terminal-active-prompt';
-  line.innerHTML = `<span class="prompt">burddan@arch ~$ </span><span class="terminal-input-text"></span><span class="blink">█</span>`;
+  line.innerHTML = `<span class="prompt">burddan@gentoo ~$ </span><span class="terminal-input-text"></span><span class="blink">█</span>`;
   terminal.appendChild(line);
   terminal.scrollTop = terminal.scrollHeight;
   setFocusedTerminal(terminal);
@@ -292,7 +342,7 @@ function spawnTerminal() {
     <div class="window-body">
       <div class="terminal">
         <div class="terminal-line">
-          <span class="prompt">burddan@arch ~$ </span><span id="${id}"></span>
+          <span class="prompt">burddan@gentoo ~$ </span><span id="${id}"></span>
         </div>
       </div>
     </div>`;

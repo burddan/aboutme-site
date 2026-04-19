@@ -35,9 +35,12 @@ body {
   background: #000;
   z-index: 99999;
   padding: 16px;
-  overflow: hidden;
+  overflow-y: scroll;
   font-family: 'ANK', monospace;
 }
+
+#boot-screen::-webkit-scrollbar { display: none; }
+#boot-screen { scrollbar-width: none; }
 
 #boot-screen::before {
   content: " ";
@@ -63,7 +66,7 @@ body {
 .boot-ok     { color: #98971a; }
 .boot-start  { color: #458588; }
 .boot-warn   { color: #d79921; }
-.boot-dim    { color: #555; }
+.boot-dim    { color: #888; }
 
 @keyframes boot-fadeout {
   from { opacity: 1; }
