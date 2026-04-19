@@ -28,6 +28,52 @@ body {
   flex-direction: column;
 }
 
+/* === BOOT SCREEN === */
+#boot-screen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 99999;
+  padding: 16px;
+  overflow: hidden;
+  font-family: 'ANK', monospace;
+}
+
+#boot-screen::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%),
+    linear-gradient(90deg, rgba(255,0,0,0.03), rgba(0,255,0,0.02), rgba(0,0,255,0.03));
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#boot-output {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #e0e0e0;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.boot-ok     { color: #98971a; }
+.boot-start  { color: #458588; }
+.boot-warn   { color: #d79921; }
+.boot-dim    { color: #555; }
+
+@keyframes boot-fadeout {
+  from { opacity: 1; }
+  to   { opacity: 0; pointer-events: none; }
+}
+
+.boot-fadeout {
+  animation: boot-fadeout 0.8s ease forwards;
+}
+
 /* === DWM BAR === */
 .dwm-bar::before {
   content: " ";
@@ -262,24 +308,128 @@ body {
   color: var(--cursor-color);
 }
 
-/* === NEOFETCH OUTPUT === */
-.neofetch-output {
-  margin-top: 6px;
-  margin-bottom: 6px;
+/* === ABOUTME OUTPUT === */
+.aboutme-output {
+  margin-top: 4px;
 }
 
-.neofetch-output pre {
-  font-family: inherit;
+.aboutme-line {
   font-size: 13px;
   line-height: 1.7;
   color: var(--terminal-text);
-  white-space: pre;
 }
 
-.nf-art   { color: var(--nf-art-color); }
+.aboutme-name {
+  font-size: 16px;
+  color: var(--nf-label-color);
+  font-weight: bold;
+}
+
+.aboutme-handle {
+  font-size: 13px;
+  color: var(--tag-color);
+  font-weight: normal;
+}
+
+.aboutme-separator {
+  color: var(--separator);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+}
+
+.aboutme-section {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 3px 0;
+}
+
+.aboutme-icon {
+  color: var(--prompt-color);
+  flex-shrink: 0;
+}
+
+.aboutme-text {
+  font-size: 13px;
+  color: var(--terminal-text);
+  line-height: 1.6;
+}
+
+.aboutme-quote {
+  font-size: 12px;
+  color: var(--tag-color);
+  font-style: italic;
+  padding-top: 4px;
+}
+
 .nf-label { color: var(--nf-label-color); font-weight: bold; }
-.nf-sep   { color: var(--nf-sep-color); }
 .nf-key   { color: var(--nf-key-color); }
+
+/* === INTERACTIVE TERMINAL === */
+.cmd-output {
+  margin: 4px 0;
+}
+
+.cmd-row {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--terminal-text);
+}
+
+.cmd-error {
+  color: #cc241d;
+}
+
+.terminal-input-text {
+  color: var(--typed-color);
+}
+
+/* === FASTFETCH === */
+.fastfetch-wrap {
+  display: flex;
+  gap: 24px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  align-items: flex-start;
+}
+
+.fastfetch-logo {
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+.ff-green { color: #4caf50; }
+
+.fastfetch-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 4px;
+  font-size: 13px;
+}
+
+.ff-user { font-size: 14px; font-weight: bold; }
+.ff-accent { color: var(--prompt-color); }
+.ff-dim { color: var(--tag-color); }
+.ff-sep { color: var(--separator); margin-bottom: 4px; }
+
+.ff-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.ff-key {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--nf-key-color);
+  min-width: 80px;
+}
+
+.ff-val { color: var(--terminal-text); }
 
 .blink {
   animation: blink 1s step-end infinite;
