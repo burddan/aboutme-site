@@ -11,7 +11,7 @@
   <div id="boot-screen">
     <div id="boot-output"></div>
   </div>
-  <div class="dwm-bar">
+  <div class="dwm-bar" style="display:none">
     <div class="bar-tags">
       <span class="tag active" data-ws="aboutme" data-title="About me" data-jp="自己紹介"><span class="tag-icon">󰙍</span> aboutme</span>
       <span class="tag" data-ws="projects" data-title="Projects" data-jp="作品集"><span class="tag-icon">󰲋</span> projects</span>
@@ -28,7 +28,13 @@
 
     <!-- workspace: aboutme -->
     <div class="workspace active" id="ws-aboutme">
-      <div class="window">
+      <div class="marquee-wrap" style="display:none">
+        <div class="marquee-track">
+          <span>testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp;</span>
+          <span aria-hidden="true">testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp;</span>
+        </div>
+      </div>
+      <div class="window" style="display:none">
         <div class="window-body">
           <div class="terminal">
             <div class="terminal-line">
@@ -80,7 +86,7 @@
 
   </div>
 
-  <div class="manual">
+  <div class="manual" style="display:none">
     <div class="manual-title">keybinds</div>
     <div class="manual-item"><span class="manual-key">double click</span> tile / float window</div>
     <div class="manual-item"><span class="manual-key">q</span> open terminal</div>

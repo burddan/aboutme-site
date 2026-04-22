@@ -102,7 +102,10 @@ function runBoot() {
 
   setTimeout(() => {
     screen.classList.add('boot-fadeout');
-    setTimeout(() => screen.remove(), 900);
+    setTimeout(() => {
+      screen.remove();
+      revealDesktop();
+    }, 900);
   }, total + 400);
 }
 
@@ -139,7 +142,7 @@ const COMMANDS = {
 <div class="aboutme-line">I have experience working with <span class="nf-key">C/C++</span>, <span class="nf-key">APIs</span>, <span class="nf-key">Docker</span>, and <span class="nf-key">CI/CD</span> workflows.</div>
 <div class="aboutme-line"> </div>
 <div class="aboutme-line">I enjoy building practical projects that combine performance,</div>
-<div class="aboutme-line">automation, and clean gentooitecture.</div>
+<div class="aboutme-line">automation, and clean gentoo artecture.</div>
 <div class="aboutme-line">Currently focused on improving my skills in <span class="nf-key">DevOps</span> and scalable system design.</div>
 <div class="aboutme-line"> </div>
 <div class="aboutme-line">I'm always learning and looking for opportunities to grow as a developer.</div>
@@ -436,7 +439,20 @@ document.querySelector('.desktop').addEventListener('click', (e) => {
   if (!e.target.closest('.window')) focusedTerminal = null;
 });
 
+// === REVEAL SEQUENCE ===
+function revealEl(el, displayVal) {
+  el.style.display = displayVal;
+  el.classList.add('reveal-fade');
+}
+
+function revealDesktop() {
+  setTimeout(() => revealEl(document.querySelector('.dwm-bar'),            'flex'),  0);
+  setTimeout(() => revealEl(document.querySelector('.manual'),             'block'), 420);
+  setTimeout(() => revealEl(document.querySelector('.marquee-wrap'),       'block'), 840);
+  setTimeout(() => revealEl(document.querySelector('#ws-aboutme .window'), 'flex'),  1260);
+  setTimeout(initTerminal, 1860);
+}
+
 // === INIT ===
 document.querySelectorAll('.window').forEach(makeDraggable);
 initWorkspaces();
-initTerminal();
