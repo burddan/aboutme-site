@@ -389,7 +389,7 @@ function spawnTerminal() {
 
 function appendFastfetch(terminal) {
   const output = document.createElement('div');
-  output.innerHTML = `<pre class="fastfetch-raw"> _-----_       <span class="ff-accent">burddan</span><span class="ff-dim">@</span><span class="ff-accent">navi</span>
+  output.innerHTML = `<pre class="fastfetch-raw"> _-----_       <span class="ff-accent">burddan</span><span class="ff-dim">@</span><span class="ff-accent">gentoo</span>
 (       \\      <span class="ff-dim">------------</span>
 \\    0   \\     <span class="nf-key">OS:</span> Gentoo linux x86_64
  \\        )    <span class="nf-key">Kernel:</span> Linux 6.19.12-cachy

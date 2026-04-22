@@ -120,7 +120,7 @@ body {
   padding: 0 10px;
   color: var(--tag-color);
   cursor: pointer;
-  font-size: 17px;
+  font-size: 20px;
   white-space: nowrap;
   background: var(--bar-bg);
   transition: background 0.1s;
@@ -132,6 +132,7 @@ body {
 
 .bar-title-jp {
   font-family: 'DotGothic', monospace;
+  font-weight: bold;
   opacity: 0.75;
   margin-left: 8px;
 }
@@ -172,7 +173,7 @@ body {
 #bar-stats,
 #bar-date {
   color: var(--status-text);
-  font-size: 17px;
+  font-size: 20px;
   white-space: nowrap;
 }
 
@@ -291,7 +292,7 @@ body {
 /* === TERMINAL === */
 .terminal {
   color: var(--terminal-text);
-  font-size: 13px;
+  font-size: 18px;
   line-height: 1.6;
   overflow-y: auto;
   flex: 1;
@@ -322,26 +323,26 @@ body {
 }
 
 .aboutme-line {
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.7;
   color: var(--terminal-text);
 }
 
 .aboutme-name {
-  font-size: 16px;
+  font-size: 19px;
   color: var(--nf-label-color);
   font-weight: bold;
 }
 
 .aboutme-handle {
-  font-size: 13px;
+  font-size: 16px;
   color: var(--tag-color);
   font-weight: normal;
 }
 
 .aboutme-separator {
   color: var(--separator);
-  font-size: 13px;
+  font-size: 16px;
   letter-spacing: 0.05em;
 }
 
@@ -358,13 +359,13 @@ body {
 }
 
 .aboutme-text {
-  font-size: 13px;
+  font-size: 16px;
   color: var(--terminal-text);
   line-height: 1.6;
 }
 
 .aboutme-quote {
-  font-size: 12px;
+  font-size: 15px;
   color: var(--tag-color);
   font-style: italic;
   padding-top: 4px;
@@ -379,7 +380,7 @@ body {
 }
 
 .cmd-row {
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.8;
   color: var(--terminal-text);
 }
@@ -403,7 +404,7 @@ body {
 
 .fastfetch-logo {
   font-family: inherit;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.4;
   flex-shrink: 0;
 }
@@ -415,10 +416,10 @@ body {
   flex-direction: column;
   gap: 4px;
   padding-top: 4px;
-  font-size: 13px;
+  font-size: 16px;
 }
 
-.ff-user { font-size: 14px; font-weight: bold; }
+.ff-user { font-size: 17px; font-weight: bold; }
 .ff-accent { color: var(--prompt-color); }
 .ff-dim { color: var(--tag-color); }
 .ff-sep { color: var(--separator); margin-bottom: 4px; }
@@ -500,7 +501,7 @@ body {
   background: var(--win-bg);
   border: 1px solid var(--win-border);
   padding: 10px 14px;
-  font-size: 15px;
+  font-size: 17px;
   color: var(--terminal-text);
   z-index: 999;
   backdrop-filter: blur(4px);
@@ -508,7 +509,7 @@ body {
 
 .manual-title {
   color: var(--bar-title-bg);
-  font-size: 15px;
+  font-size: 17px;
   margin-bottom: 6px;
   letter-spacing: 0.1em;
 }
