@@ -424,6 +424,14 @@ body {
   align-items: center;
 }
 
+.fastfetch-raw {
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--terminal-text);
+  margin: 6px 0 4px;
+}
+
 .ff-key {
   display: flex;
   align-items: center;

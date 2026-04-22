@@ -368,33 +368,20 @@ function spawnTerminal() {
 
 function appendFastfetch(terminal) {
   const output = document.createElement('div');
-  output.className = 'fastfetch-output';
-  output.innerHTML = `
-<div class="fastfetch-wrap">
-  <pre class="fastfetch-logo"><span class="ff-green">          .vir.
-       .d$$$$$$$$$$b.
-     .d$$$$$$$$$$$$$$$b.
-    d$$$$$$$$$$$$$$$$$$$$b
-   d$$$$$$$$$$$$$$$$$$$$$$b
-  d$$$$$$$$$$$$$$$$$$$$$$$$$
-  $$$$$$$$$$$$$$$$$$$$$$$$$
-  $$$$$$$$$$$$$$$$$$$$$$$$$
-  $$$$$$$$$$$$$$$$$$$$$$$$$
-   $$$$$$$$$$$$$$$$$$$$$$$$
-    $$$$$$$$$$$$$$$$$$$$$$
-     "$$$$$$$$$$$$$$$$$$"
-       "$$$$$$$$$$$$$$"
-          "$$$$$$$$$"</span></pre>
-  <div class="fastfetch-info">
-    <div class="ff-user"><span class="ff-accent">burddan</span><span class="ff-dim">@</span><span class="ff-accent">gentoo</span></div>
-    <div class="ff-sep">─────────────────</div>
-    <div class="ff-row"><span class="ff-key"><span class="tag-icon">󰣇</span> OS</span><span class="ff-val">Gentoo Linux</span></div>
-    <div class="ff-row"><span class="ff-key"><span class="tag-icon">󰌽</span> Kernel</span><span class="ff-val">Linux 6.19</span></div>
-    <div class="ff-row"><span class="ff-key"><span class="tag-icon">󰖯</span> WM</span><span class="ff-val">dwm</span></div>
-    <div class="ff-sep" style="margin-top:6px">─────────────────</div>
-    <div class="ff-row" style="margin-top:2px"><span class="ff-dim">type</span> <span class="nf-key">help</span> <span class="ff-dim">for available commands</span></div>
-  </div>
-</div>`;
+  output.innerHTML = `<pre class="fastfetch-raw"> _-----_       <span class="ff-accent">burddan</span><span class="ff-dim">@</span><span class="ff-accent">navi</span>
+(       \\      <span class="ff-dim">------------</span>
+\\    0   \\     <span class="nf-key">OS:</span> Gentoo linux x86_64
+ \\        )    <span class="nf-key">Kernel:</span> Linux 6.19.12-cachy
+ /      _/     <span class="nf-key">Uptime:</span> 5 hours, 23 mins
+(     _-       <span class="nf-key">Packages:</span> 1038 (portage)
+\\____-         <span class="nf-key">Shell:</span> zsh
+               <span class="nf-key">WM:</span> DWM (X.org)
+               <span class="nf-key">Terminal:</span> st
+               <span class="nf-key">CPU:</span> Intel(R) Xeon(R) E5-2670 v3 (24) @ 3.10 GHz
+               <span class="nf-key">GPU:</span> NVIDIA GeForce GTX 1650 [Discrete]
+               <span class="nf-key">Memory:</span> 4.49 GiB / 31.18 GiB (14%)
+</pre>
+<div class="cmd-row ff-dim" style="margin-top:2px">type <span class="nf-key">help</span> for available commands</div>`;
   terminal.appendChild(output);
   appendInteractivePrompt(terminal);
 }
@@ -456,3 +443,16 @@ function revealDesktop() {
 // === INIT ===
 document.querySelectorAll('.window').forEach(makeDraggable);
 initWorkspaces();
+
+[
+  { ws: 'ws-projects', cmd: 'projects'  },
+  { ws: 'ws-support',  cmd: 'supportme' },
+  { ws: 'ws-contact',  cmd: 'contact'   },
+].forEach(({ ws, cmd }) => {
+  const terminal = document.querySelector(`#${ws} .terminal`);
+  if (!terminal) return;
+  const out = document.createElement('div');
+  out.innerHTML = COMMANDS[cmd]();
+  terminal.appendChild(out);
+  appendInteractivePrompt(terminal);
+});
