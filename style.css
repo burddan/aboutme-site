@@ -26,6 +26,7 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  cursor: url('data:image/x-icon;base64,AAACAAEAICACAAAAAAAwAQAAFgAAACgAAAAgAAAAQAAAAAEAAQAAAAAAgAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAMAAAAGAAAABgAAAAwAAAEMAAABmAAAAdgAAAH4AAAB/wAAAf4AAAH8AAAB+AAAAfAAAAHgAAABwAAAAYAAAAEAAAAAAAAAA/////////////////////////////////////////////////////////////////z////4f///+H////D///3w///84f///EH///wD///8A////AA///wAf//8AP///AH///wD///8B////A////wf///8P////H////z////8='), auto;
 }
 
 /* === BOOT SCREEN === */
@@ -119,7 +120,7 @@ body {
   padding: 0 10px;
   color: var(--tag-color);
   cursor: pointer;
-  font-size: 12px;
+  font-size: 17px;
   white-space: nowrap;
   background: var(--bar-bg);
   transition: background 0.1s;
@@ -161,22 +162,18 @@ body {
   letter-spacing: 0.03em;
 }
 
-.bar-status {
+.bar-sysinfo {
   display: flex;
   align-items: center;
-  background: var(--bar-bg);
-  padding: 0 6px;
+  padding: 0 10px;
+  gap: 4px;
 }
 
-.status-item {
+#bar-stats,
+#bar-date {
   color: var(--status-text);
-  font-size: 18px;
-  padding: 0 8px;
-  border-left: 1px solid var(--separator);
-}
-
-.status-item:first-child {
-  border-left: none;
+  font-size: 17px;
+  white-space: nowrap;
 }
 
 /* === DESKTOP === */
@@ -229,12 +226,13 @@ body {
   top: 60px;
   left: 80px;
   width: 750px;
-  min-height: 450px;
+  height: 450px;
   background: var(--win-bg);
   border: 1px solid var(--win-border);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   user-select: none;
   cursor: grab;
 }
@@ -284,6 +282,10 @@ body {
 .window-body {
   padding: 16px;
   flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 /* === TERMINAL === */
@@ -291,6 +293,9 @@ body {
   color: var(--terminal-text);
   font-size: 13px;
   line-height: 1.6;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
 }
 
 .terminal-line {

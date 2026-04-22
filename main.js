@@ -179,7 +179,7 @@ function executeCommand(terminal, cmd) {
   if (COMMANDS[trimmed]) {
     output.innerHTML = COMMANDS[trimmed]();
   } else {
-    output.innerHTML = `<div class="cmd-output"><div class="cmd-row cmd-error">bash: ${trimmed}: command not found</div></div>`;
+    output.innerHTML = `<div class="cmd-output"><div class="cmd-row cmd-error">bash: ${trimmed}: command not found, write "help" for commands</div></div>`;
   }
 
   terminal.appendChild(output);
@@ -286,20 +286,36 @@ function appendAboutMe() {
   appendInteractivePrompt(terminal);
 }
 
+// === DWM BAR STATS ===
+let fakeRam = 3.8 + Math.random() * 0.8;
+let fakeCpu = 0.3 + Math.random() * 0.6;
+
+function updateStats() {
+  const el = document.getElementById('bar-stats');
+  if (!el) return;
+  fakeRam += (Math.random() - 0.5) * 0.12;
+  fakeRam = Math.max(3.2, Math.min(5.8, fakeRam));
+  fakeCpu += (Math.random() - 0.5) * 0.35;
+  fakeCpu = Math.max(0.1, Math.min(3.8, fakeCpu));
+  el.textContent = `[RAM ${fakeRam.toFixed(1)}G CPU ${fakeCpu.toFixed(1)}%]`;
+}
+
+updateStats();
+setInterval(updateStats, 2000);
+
 // === DWM BAR DATE ===
 function updateDate() {
   const el = document.getElementById('bar-date');
   if (!el) return;
   const now = new Date();
-  const days   = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  const day  = days[now.getDay()];
-  const mon  = months[now.getMonth()];
-  const date = String(now.getDate()).padStart(2, '0');
-  const h    = String(now.getHours()).padStart(2, '0');
-  const m    = String(now.getMinutes()).padStart(2, '0');
-  const s    = String(now.getSeconds()).padStart(2, '0');
-  el.innerHTML = `<span class="tag-icon">&#xF017;</span> ${day} ${mon} ${date} ${h}:${m}:${s}`;
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const day = days[now.getDay()];
+  const yy  = String(now.getFullYear()).slice(-2);
+  const mm  = String(now.getMonth() + 1).padStart(2, '0');
+  const dd  = String(now.getDate()).padStart(2, '0');
+  const h   = String(now.getHours()).padStart(2, '0');
+  const m   = String(now.getMinutes()).padStart(2, '0');
+  el.textContent = `[${day} ${yy}-${mm}-${dd} ${h}:${m}]`;
 }
 
 updateDate();
@@ -352,6 +368,11 @@ function spawnTerminal() {
 
   ws.appendChild(win);
   makeDraggable(win);
+  win.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    if (focusedTerminal && win.contains(focusedTerminal)) focusedTerminal = null;
+    win.remove();
+  });
 
   new Typed(`#${id}`, {
     strings: ['fastfetch'],
@@ -387,14 +408,23 @@ function appendFastfetch(terminal) {
 }
 
 // === KEYBOARD INPUT ===
+let modKey = false;
 document.addEventListener('keydown', (e) => {
-  // spawn / close terminal
-  if (e.key === 'q' && !focusedTerminal) { spawnTerminal(); return; }
-  if (e.key === 'w' && !focusedTerminal) {
-    const ws = document.querySelector('.workspace.active');
-    if (!ws) return;
-    const windows = ws.querySelectorAll('.window');
-    if (windows.length > 0) windows[windows.length - 1].remove();
+  if (e.key === 'Alt') { modKey = true; e.preventDefault(); return; }
+
+  // TWM-style binds: Alt+Enter = spawn terminal, Alt+q = close window
+  if (modKey && e.key === 'Enter') { e.preventDefault(); spawnTerminal(); return; }
+  if (modKey && e.key === 'q') {
+    e.preventDefault();
+    if (focusedTerminal) {
+      const win = focusedTerminal.closest('.window');
+      if (win) { focusedTerminal = null; win.remove(); }
+    } else {
+      const ws = document.querySelector('.workspace.active');
+      if (!ws) return;
+      const windows = ws.querySelectorAll('.window');
+      if (windows.length > 0) windows[windows.length - 1].remove();
+    }
     return;
   }
 
@@ -420,6 +450,8 @@ document.addEventListener('keydown', (e) => {
     e.preventDefault();
   }
 });
+
+document.addEventListener('keyup', (e) => { if (e.key === 'Alt') modKey = false; });
 
 // clicking desktop defocuses terminal
 document.querySelector('.desktop').addEventListener('click', (e) => {

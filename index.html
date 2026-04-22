@@ -19,21 +19,22 @@
       <span class="tag" data-ws="support" data-title="Support me" data-jp="支援"><span class="tag-icon">󰋑</span> support me</span>
     </div>
     <div class="bar-title" id="bar-title">About me <span class="bar-title-jp">自己紹介</span></div>
-    <div class="bar-status">
-      <span class="status-item" id="bar-date"></span>
+    <div class="bar-sysinfo">
+      <span id="bar-stats"></span><span id="bar-date"></span>
     </div>
   </div>
 
   <div class="desktop">
 
+    <div class="marquee-wrap" style="display:none">
+      <div class="marquee-track">
+        <span>testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp;</span>
+        <span aria-hidden="true">testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp;</span>
+      </div>
+    </div>
+
     <!-- workspace: aboutme -->
     <div class="workspace active" id="ws-aboutme">
-      <div class="marquee-wrap" style="display:none">
-        <div class="marquee-track">
-          <span>testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp;</span>
-          <span aria-hidden="true">testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp; testando testando &nbsp;&nbsp;&nbsp;</span>
-        </div>
-      </div>
       <div class="window" style="display:none">
         <div class="window-body">
           <div class="terminal">
@@ -89,8 +90,8 @@
   <div class="manual" style="display:none">
     <div class="manual-title">keybinds</div>
     <div class="manual-item"><span class="manual-key">double click</span> tile / float window</div>
-    <div class="manual-item"><span class="manual-key">q</span> open terminal</div>
-    <div class="manual-item"><span class="manual-key">w</span> close terminal</div>
+    <div class="manual-item"><span class="manual-key">Alt+Enter</span> open terminal</div>
+    <div class="manual-item"><span class="manual-key">Alt+q</span> close window</div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
