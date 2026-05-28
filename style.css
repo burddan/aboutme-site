@@ -79,23 +79,6 @@ body {
 }
 
 /* === DWM BAR === */
-.dwm-bar::before {
-  content: " ";
-  display: block;
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
-    linear-gradient(
-      90deg,
-      rgba(255, 0, 0, 0.04),
-      rgba(0, 255, 0, 0.02),
-      rgba(0, 0, 255, 0.04)
-    );
-  background-size: 100% 2px, 3px 100%;
-  pointer-events: none;
-  z-index: 9999;
-}
 
 .dwm-bar {
   position: relative;
@@ -106,6 +89,7 @@ body {
   align-items: stretch;
   flex-shrink: 0;
   font-size: 20px; /* ← fonte da barra */
+  z-index: 10;
 }
 
 .bar-tags {
