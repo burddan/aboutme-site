@@ -3,15 +3,15 @@
    para mudar todo o visual do site (estilo pywal)
    ============================================= */
 :root {
-  /* paleta base — gruvbox */
-  --color0: #282828;   /* fundo principal */
-  --color1: #3c3836;   /* superfície (janelas, barra) */
-  --color2: #504945;   /* superfície destacada */
-  --color3: #d79921;   /* acento (titlebar da barra) */
-  --color4: #ebdbb2;   /* foreground / texto principal */
-  --color5: #fabd2f;   /* brilhante (prompt) */
-  --color6: #d5c4a1;   /* texto secundário */
-  --color7: #504945;   /* separadores / bordas */
+  /* paleta base — dither b&w */
+  --color0: #080808;   /* fundo principal */
+  --color1: #141414;   /* superfície (janelas, barra) */
+  --color2: #2c2c2c;   /* superfície destacada (~25% dither) */
+  --color3: #aaaaaa;   /* acento (titlebar da barra, ~50% dither) */
+  --color4: #f0f0f0;   /* foreground / texto principal */
+  --color5: #ffffff;   /* brilhante (prompt) */
+  --color6: #888888;   /* texto secundário (~33% dither) */
+  --color7: #1e1e1e;   /* separadores / bordas */
 
   /* mapeamento semântico — não precisa mexer aqui */
   --bg:                var(--color0);
@@ -30,7 +30,7 @@
   --separator:         var(--color7);
 
   /* --wallpaper:      url('wallpaper_exemplo.jpg'); */
-  --win-bg:            rgba(60, 56, 54, 0.45); /* ← transparência da janela, 0.0 = invisível, 1.0 = sólido */
+  --win-bg:            rgba(14, 14, 14, 0.55); /* ← transparência da janela, 0.0 = invisível, 1.0 = sólido */
   --win-border:        var(--color2);
   --win-titlebar-bg:   var(--color7);
   --win-title-text:    var(--color6);

@@ -189,6 +189,20 @@ body {
   background-position: center; */
 }
 
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('definitivocaralho.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.18;
+  filter: invert(1);
+  pointer-events: none;
+  z-index: 0;
+}
+
 /* === CRT OVERLAY === */
 .desktop::before {
   content: " ";
