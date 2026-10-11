@@ -126,7 +126,6 @@ const COMMANDS = {
 <div class="cmd-row"><span class="nf-key">aboutme</span>   — who am i</div>
 <div class="cmd-row"><span class="nf-key">projects</span>  — my projects</div>
 <div class="cmd-row"><span class="nf-key">contact</span>   — get in touch</div>
-<div class="cmd-row"><span class="nf-key">supportme</span> — support my work</div>
 <div class="cmd-row"><span class="nf-key">help</span>      — show this message</div>
 <div class="cmd-row"><span class="nf-key">clear</span>     — clear terminal</div>
 </div>`;
@@ -153,9 +152,6 @@ const COMMANDS = {
     return `<div class="cmd-output"><div class="cmd-row"><span class="nf-key">—</span> coming soon</div></div>`;
   },
   contact() {
-    return `<div class="cmd-output"><div class="cmd-row"><span class="nf-key">—</span> coming soon</div></div>`;
-  },
-  supportme() {
     return `<div class="cmd-output"><div class="cmd-row"><span class="nf-key">—</span> coming soon</div></div>`;
   },
 };
@@ -477,9 +473,8 @@ document.querySelectorAll('.window').forEach(makeDraggable);
 initWorkspaces();
 
 [
-  { ws: 'ws-projects', cmd: 'projects'  },
-  { ws: 'ws-support',  cmd: 'supportme' },
-  { ws: 'ws-contact',  cmd: 'contact'   },
+  { ws: 'ws-projects', cmd: 'projects' },
+  { ws: 'ws-contact',  cmd: 'contact'  },
 ].forEach(({ ws, cmd }) => {
   const terminal = document.querySelector(`#${ws} .terminal`);
   if (!terminal) return;
