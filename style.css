@@ -391,6 +391,84 @@ body::after {
   color: var(--typed-color);
 }
 
+/* === CONTACT === */
+.contact-wrap {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+/* 168px de largura = mesma altura do bloco de texto ao lado (6 linhas) */
+.contact-pfp {
+  display: block;
+  width: 168px;
+  height: auto;
+  flex-shrink: 0;
+  border: 1px solid var(--win-border);
+}
+
+/* grid de 2 colunas: todos os valores começam no mesmo x */
+.contact-info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 16px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.contact-full { grid-column: 1 / -1; }
+.contact-info .term-link { justify-self: start; }
+
+/* === PROJECTS === */
+/* janela maior e centralizada pra caber todos os projetos de uma vez */
+#ws-projects .window {
+  top: 24px;
+  left: max(24px, calc((100% - 1280px) / 2));
+  width: min(1280px, calc(100% - 48px));
+  height: auto;
+  max-height: calc(100% - 48px);
+}
+
+/* 2 colunas quando cabe, 1 coluna em terminal estreito */
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+  column-gap: 32px;
+}
+
+.proj {
+  margin: 12px 0 4px;
+  padding-left: 12px;
+  border-left: 2px solid var(--win-border);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.proj-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.proj-meta  { color: var(--tag-color); white-space: nowrap; }
+.proj-desc  { color: var(--terminal-text); margin: 2px 0; }
+.proj-stack { color: var(--nf-key-color); font-size: 15px; }
+
+.proj-link  { font-size: 15px; }
+
+/* links clicáveis dentro do terminal (projects, contact) */
+.term-link {
+  color: var(--tag-color);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.term-link:hover {
+  color: var(--prompt-color);
+  text-decoration: underline;
+}
+
 /* === FASTFETCH === */
 .fastfetch-wrap {
   display: flex;

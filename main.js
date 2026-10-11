@@ -136,9 +136,10 @@ const COMMANDS = {
 <div class="aboutme-line"> </div>
 <div class="aboutme-line"><span class="nf-label">Hi, I'm João Vitor.</span></div>
 <div class="aboutme-line"> </div>
-<div class="aboutme-line">I'm a developer with a strong interest in backend development,</div>
-<div class="aboutme-line">Linux systems, and low-level programming.</div>
-<div class="aboutme-line">I have experience working with <span class="nf-key">C/C++</span>, <span class="nf-key">APIs</span>, <span class="nf-key">Docker</span>, and <span class="nf-key">CI/CD</span> workflows.</div>
+<div class="aboutme-line">I'm a developer with a strong interest in backend development</div>
+<div class="aboutme-line">and Linux systems.</div>
+<div class="aboutme-line">I have experience with <span class="nf-key">Java</span>, <span class="nf-key">C/C++</span>, <span class="nf-key">APIs</span>, <span class="nf-key">Docker</span> and <span class="nf-key">CI/CD</span> workflows,</div>
+<div class="aboutme-line">plus Minecraft servers in general and <span class="nf-key">Paper</span> plugin development.</div>
 <div class="aboutme-line"> </div>
 <div class="aboutme-line">I enjoy building practical projects that combine performance,</div>
 <div class="aboutme-line">automation, and clean gentoo artecture.</div>
@@ -149,12 +150,78 @@ const COMMANDS = {
 </div>`;
   },
   projects() {
-    return `<div class="cmd-output"><div class="cmd-row"><span class="nf-key">—</span> coming soon</div></div>`;
+    const items = PROJECTS.map(p => `
+<div class="proj">
+<div class="proj-head"><span class="nf-label">${p.name}</span><span class="proj-meta">${p.lang}${p.stars ? ` · ★${p.stars}` : ''}</span></div>
+<div class="proj-desc">${p.desc}</div>
+<div class="proj-stack">${p.stack.join(' · ')}</div>
+<a class="term-link proj-link" href="https://github.com/burddan/${p.name}" target="_blank" rel="noopener">github.com/burddan/${p.name}</a>
+</div>`).join('');
+    return `
+<div class="cmd-output">
+<div class="cmd-row ff-dim">~/projects — ${PROJECTS.length} repos</div>
+<div class="proj-grid">${items}</div>
+</div>`;
   },
   contact() {
-    return `<div class="cmd-output"><div class="cmd-row"><span class="nf-key">—</span> coming soon</div></div>`;
+    return `
+<div class="cmd-output contact-wrap">
+<img class="contact-pfp" src="pfp.png" alt="burddan" draggable="false" />
+<div class="contact-info">
+<span class="contact-full ff-accent ff-user">burddan</span>
+<span class="contact-full ff-dim">-------</span>
+<span class="nf-key">Discord:</span><span class="ff-val">burddan</span>
+<span class="nf-key">GitHub:</span><a class="term-link" href="https://github.com/burddan" target="_blank" rel="noopener">github.com/burddan</a>
+<span class="nf-key">Twitch:</span><a class="term-link" href="https://www.twitch.tv/burddan" target="_blank" rel="noopener">twitch.tv/burddan</a>
+<span class="nf-key">NameMC:</span><a class="term-link" href="https://pt.namemc.com/profile/burddan.2" target="_blank" rel="noopener">namemc.com/profile/burddan.2</a>
+</div>
+</div>`;
   },
 };
+
+// === PROJECTS ===
+const PROJECTS = [
+  {
+    name: 'gentoo-portage-config',
+    lang: 'Portage',
+    stars: 6,
+    desc: 'My daily Gentoo setup for a ThinkPad X230. The whole system is built with LLVM/Clang, ThinLTO and -O3, with USE="*-" so only features I actually use get compiled. A custom kernel cut it from 489MB to 121MB (-75%) and made boot 30% faster.',
+    stack: ['gentoo', 'llvm/clang', 'thinlto', 'kernel tuning'],
+  },
+  {
+    name: 'nxtop',
+    lang: 'Rust',
+    desc: 'TUI system monitor with vim keybinds: process list with tree view, filter and kill, plus GPU usage, VRAM and temperatures (NVIDIA + AMD) and hwmon sensors. No system dependencies, it reads straight from /proc and /sys.',
+    stack: ['rust', 'ratatui', 'crossterm', '/proc', '/sys'],
+  },
+  {
+    name: 'antibot-nosalr',
+    lang: 'Java',
+    stars: 3,
+    desc: 'Paper plugin that records player actions (block breaks, attacks, fishing, inventory clicks and more) in one normalized event format, so repetitive patterns from macros and auto-farms can be analyzed. It never punishes anyone on its own, it collects evidence for admins to review with /eventos.',
+    stack: ['java 21', 'paper api', 'gradle'],
+  },
+  {
+    name: 'ch8-emu',
+    lang: 'C',
+    desc: 'CHIP-8 emulator in pure C, written with felypz: full CPU and opcode decoding, 4KB memory, 64x32 display and keyboard input through SDL2. Unit tested with Google Test and runs inside Docker.',
+    stack: ['c', 'sdl2', 'gtest', 'docker'],
+  },
+  {
+    name: 'dwm',
+    lang: 'C',
+    stars: 12,
+    desc: 'My patched build of dwm, the window manager this site imitates. It adds pertag, vanity gaps, cfacts, movestack, alt-tab and xrdb, so the colors follow pywal and the wallpaper.',
+    stack: ['c', 'x11', 'pywal'],
+  },
+  {
+    name: 'todor',
+    lang: 'Rust',
+    stars: 1,
+    desc: 'Terminal todo app with vim keys. It has tasks per day, subtasks, recurring dailies that track completion by date, and long-term goals, all saved as JSON in ~/.todor.',
+    stack: ['rust', 'ratatui', 'serde', 'chrono'],
+  },
+];
 
 function executeCommand(terminal, cmd) {
   const trimmed = cmd.trim().toLowerCase();
